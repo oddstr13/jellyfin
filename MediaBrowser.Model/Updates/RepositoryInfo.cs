@@ -16,5 +16,11 @@ namespace MediaBrowser.Model.Updates
         /// </summary>
         /// <value>The URL.</value>
         public string? Url { get; set; }
+
+        /// <summary>
+        /// Gets or sets the enabled state.
+        /// </summary>
+        /// <value>Is enabled?</value>
+        public bool? Enabled { get; set; }
     }
 }

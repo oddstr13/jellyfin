@@ -129,11 +129,14 @@ namespace Emby.Server.Implementations.Updates
             var result = new List<PackageInfo>();
             foreach (RepositoryInfo repository in _config.Configuration.PluginRepositories)
             {
-                foreach (var package in await GetPackages(repository.Url, cancellationToken).ConfigureAwait(true))
+                if (repository.Enabled.Equals(true))
                 {
-                    package.repositoryName = repository.Name;
-                    package.repositoryUrl = repository.Url;
-                    result.Add(package);
+                    foreach (var package in await GetPackages(repository.Url, cancellationToken).ConfigureAwait(true))
+                    {
+                        package.repositoryName = repository.Name;
+                        package.repositoryUrl = repository.Url;
+                        result.Add(package);
+                    }
                 }
             }
 
